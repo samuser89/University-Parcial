@@ -55,6 +55,8 @@ namespace University.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        
+
         private void LoadData()
         {
             var instructors = context.Instructors.Select(x => new InstructorDTO
@@ -65,5 +67,15 @@ namespace University.Web.Controllers
             }).ToList();
             ViewData["Instructors"] = new SelectList(instructors, "ID", "FullName");
         }
+
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            LoadData();
+
+            return View();
+        }
+
     }
 }

@@ -8,6 +8,8 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+
+
 </p>
 <table class="table">
     <tr>
@@ -16,7 +18,10 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Location)
-        </th>        
+        </th>  .
+        <th>
+            Options
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -26,7 +31,14 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Location)
-        </td>        
+        </td>   
+        <td>
+
+            @Html.ActionLink("Edit", "Edit", "OfficeAssignments", new { id = item.InstructorID }, new { @class = "btn btn-sm btn-primary" })
+            @*
+        @Html.ActionLink("Delete", "Delete", "Students", new { id = item.ID }, new { @class = "btn btn-sm btn-primary" })
+            *@
+        </td>
     </tr>
 }
 
