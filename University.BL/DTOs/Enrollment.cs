@@ -2,7 +2,7 @@
 
 namespace University.BL.DTOs
 {
-    class Enrollment
+    public class Enrollment
     {
         #region EnrollmentID
         [Display(Name = "Enrollment ID")]

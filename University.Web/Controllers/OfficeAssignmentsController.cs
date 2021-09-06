@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using University.BL.Data;
 using University.BL.DTOs;
@@ -69,12 +70,60 @@ namespace University.Web.Controllers
         }
 
 
-        [HttpGet]
-        public ActionResult Edit(int id)
-        {
-            LoadData();
 
-            return View();
+        [HttpGet]
+        public ActionResult Edit(int instructorid){
+
+            var offices = context.OfficeAssignments.Where(x => x.InstructorID == instructorid)
+                                          .Select(x => new OfficeAssignmentDTO
+                                          {
+                                              InstructorID = x.InstructorID,
+                                              Location = x.Location
+                                          }).FirstOrDefault();
+
+            return View(offices);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(OfficeAssignmentDTO office)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View(office);
+
+                var officeModel = context.OfficeAssignments.FirstOrDefault(x => x.InstructorID == office.InstructorID);
+
+                //campos que se van a modificar
+                //sobreescribo las propiedades del modelo de base de datos
+                officeModel.Location = office.Location;
+
+                //aplique los cambios en base de datos
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+
+            return View(office);
+        }
+
+
+        [HttpGet]
+        public ActionResult Delete(int instructorid)
+        {
+            /*if (!context.OfficeAssignments.Any(x => x.InstructorID == instructorid))
+            {*/
+            //NO ES NECESARIO VALIDAR ELIMINA DIRECTO
+            var officeModel = context.OfficeAssignments.FirstOrDefault(x => x.InstructorID == instructorid);
+            context.OfficeAssignments.Remove(officeModel);
+            context.SaveChanges();
+            //}
+
+            return RedirectToAction("Index");
         }
 
     }

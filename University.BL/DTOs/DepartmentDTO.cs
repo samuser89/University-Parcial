@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace University.BL.DTOs
 {
-    class DepartmentDTO
+    public class DepartmentDTO
     {
         #region DepartmentID
         [Display(Name = "Department ID")]
@@ -23,7 +23,7 @@ namespace University.BL.DTOs
         #region Budget
         [Display(Name = "Budget")]
         [Required(ErrorMessage = "El campo Budget es requerido.")]
-        public double Budget { get; set; }
+        public decimal Budget { get; set; }
         #endregion
 
 
