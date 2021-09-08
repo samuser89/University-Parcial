@@ -7,6 +7,7 @@ namespace University.BL.Models
     [Table("Course", Schema = "dbo")]
     public class Course
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CourseID { get; set; }

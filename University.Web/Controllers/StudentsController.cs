@@ -71,7 +71,7 @@ namespace University.Web.Controllers
             //ViewData["Message"] = "Mensaje de prueba";
 
             #region Paginación
-            pageSize = (pageSize ?? 10);
+            pageSize = (pageSize ?? 5);
             page = (page ?? 1);
             ViewBag.PageSize = pageSize;
             #endregion

@@ -55,7 +55,7 @@ namespace University.Web.Controllers
 
             #region Paginacion
             //Si viene nulo dele 10 por defecto
-            pageSize = (pageSize ?? 10);
+            pageSize = (pageSize ?? 5);
             //si viene igual por defecto llevelo a la 1 
             page = (page ?? 1);
             ViewBag.pageSize = pageSize;

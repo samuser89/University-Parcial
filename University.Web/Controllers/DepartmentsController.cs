@@ -33,7 +33,7 @@ namespace University.Web.Controllers
             #endregion
             #region Paginacion
             //Si viene nulo dele 10 por defecto
-            pageSize = (pageSize ?? 10);
+            pageSize = (pageSize ?? 3);
             //si viene igual por defecto llevelo a la 1 
             page = (page ?? 1);
             ViewBag.pageSize = pageSize;
@@ -45,15 +45,16 @@ namespace University.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            LoadData();
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(DepartmentDTO department)
         {
-
-            try
-            {
+            LoadData();
+        
                 if (!ModelState.IsValid)
                     return View(department);
 
@@ -70,17 +71,23 @@ namespace University.Web.Controllers
                 context.SaveChanges();
 
                 return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-
-                ModelState.AddModelError(string.Empty, ex.Message);
-            }
+            
+            
+            
 
 
-            return View(department);
+
         }
-
+        private void LoadData()
+        {
+            var instructors = context.Instructors.Select(x => new InstructorDTO
+            {
+                ID = x.ID,
+                FirstMidName = x.FirstMidName,
+                LastName = x.LastName
+            }).ToList();
+            ViewData["Instructors"] = new SelectList(instructors, "ID", "FullName");
+        }
         [HttpGet]
         public ActionResult Edit(int departmentid)
         {
@@ -140,5 +147,6 @@ namespace University.Web.Controllers
         }
 
     }
+
 
 }

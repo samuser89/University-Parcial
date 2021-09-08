@@ -11,7 +11,7 @@ namespace University.Web.Controllers
         private readonly UniversityContext context = new UniversityContext();
 
         // GET: OfficeAssignments
-        public ActionResult Index()
+        public ActionResult Index(int? pageSize, int? page)
         {
             //  SELECT * FROM OfficeAssignment
             var query = context.OfficeAssignments.Include("Instructor").ToList();
@@ -25,7 +25,13 @@ namespace University.Web.Controllers
                     LastName = x.Instructor.LastName
                 }
             });
-
+            #region Paginacion
+            //Si viene nulo dele 10 por defecto
+            pageSize = (pageSize ?? 5);
+            //si viene igual por defecto llevelo a la 1 
+            page = (page ?? 1);
+            ViewBag.pageSize = pageSize;
+            #endregion 
             return View(offices);
         }
 

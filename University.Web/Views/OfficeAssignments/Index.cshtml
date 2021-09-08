@@ -1,42 +1,62 @@
-﻿@model IEnumerable<University.BL.DTOs.OfficeAssignmentDTO>
+﻿@using PagedList.Mvc;
+@model IEnumerable<University.BL.DTOs.OfficeAssignmentDTO>
+
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>OfficeAssignments</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-sm btn-primary" })
+<button class="btn btn-secondary"><span><i class="fas fa-plus-circle"> </i>@Html.ActionLink("Create New Office", "Create", "OfficeAssignments", null, new { @class = "btn btn-sm btn-secondary" }) </span></button>
+<hr />
 
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Instructor.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                Options
+            </th>
+        </tr>
 
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Instructor.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>  .
-        <th>
-            Options
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Instructor.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>   
-        <td>
-            @Html.ActionLink("Edit", "Edit", "OfficeAssignments", new { instructorid = item.InstructorID }, new { @class = "btn btn-sm btn-primary" })
-            @Html.ActionLink("Delete", "Delete", "OfficeAssignments", new { instructorid = item.InstructorID }, new { @class = "btn btn-sm btn-primary" })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Instructor.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "OfficeAssignments", new { instructorid = item.InstructorID }, new { @class = "btn btn-sm btn-primary" })
+                    @Html.ActionLink("Delete", "Delete", "OfficeAssignments", new { instructorid = item.InstructorID }, new { @class = "btn btn-sm btn-primary" })
+                </td>
+            </tr>
+        }
 
 </table>
+<div class="row">
+    <div class="col-12">
+        <span class="float-right">
+            @using (Html.BeginForm("Index", "OfficeAssignments", FormMethod.Get))
+            {
+
+                <select name="PageSize" id="PageSize" class="form-control">
+                    <option @if ((int)ViewBag.PageSize == 5) { @Html.Raw("selected") }>3</option>
+                    <option @if ((int)ViewBag.PageSize == 10) { @Html.Raw("selected") }>5</option>
+                    <option @if ((int)ViewBag.PageSize == 15) { @Html.Raw("selected") }>10</option>
+                </select>
+
+                <input type="submit" value="Go" class="btn btn-outline-secondary" />
+
+            }
+        </span>
+    </div>
+</div>

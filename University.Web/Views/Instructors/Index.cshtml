@@ -2,31 +2,15 @@
 @model PagedList.IPagedList<University.BL.DTOs.InstructorDTO>
 @{ ViewBag.Title = "Index"; }
 
-<h2>Index</h2>
-<hr />
-@Html.ActionLink("New Instructor", "Create", "Instructors", null, new { @class = "btn btn-sm btn-primary" })
-<hr />
-@using (Html.BeginForm("Index", "Instructors", FormMethod.Get))
-{
-<p>
-    <select name="PageSize" id="PageSize" class="form-control">
-        <option @if ((int)ViewBag.PageSize == 5) { @Html.Raw("selected") }>
-            5
-        </option>
-        <option @if ((int)ViewBag.PageSize == 10) { @Html.Raw("selected") }>
-            10
-        </option>
-        <option @if ((int)ViewBag.PageSize == 15) { @Html.Raw("selected") }>
-            15
-        </option>
+<h2>Instructors</h2>
 
-    </select>
-    <br />
-    <input type="submit" value="Apply" class="btn btn-primary" />
-</p>}
+
+<button class="btn btn-secondary"><span><i class="fas fa-plus-circle"> </i>@Html.ActionLink("Create New Instructor", "Create", "Instructors", null, new { @class = "btn btn-sm btn-secondary" }) </span></button>
+<hr />
+
 
 <table class="table table-bordered">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th>ID</th>
             <th>Last Name</th>
@@ -38,19 +22,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-<tr>
-    <td>@item.ID</td>
-    <td>@item.LastName</td>
-    <td>@item.FirstMidName</td>
-    <td>@item.HireDate</td>
-    <td>
-        @Html.ActionLink("Departments", "Index", "Instructors", new { instructorID = item.ID }, new { @class = "btn btn-sm btn-info" })
-        @Html.ActionLink("Edit", "Edit", "Instructors", new { id = item.ID }, new { @class = "btn btn-sm btn-primary" })
-        @Html.ActionLink("Delete", "Delete", "Instructors", new { id = item.ID }, new { @class = "btn btn-sm btn-primary" })
-    </td>
-</tr>}
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.LastName</td>
+                <td>@item.FirstMidName</td>
+                <td>@item.HireDate</td>
+                <td>
+                    @Html.ActionLink("Departments", "Index", "Instructors", new { instructorID = item.ID }, new { @class = "badge btn btn-sm btn-outline-info" })
+                    @Html.ActionLink("Edit", "Edit", "Instructors", new { id = item.ID }, new { @class = "badge btn btn-sm btn-outline-warning" })
+                    @Html.ActionLink("Delete", "Delete", "Instructors", new { id = item.ID }, new { @class = "badge btn btn-sm btn-outline-danger" })
+                </td>
+            </tr>
+}
     </tbody>
 </table>
+<div class="row">
+    <div class="col-12">
+        <span class="float-right">
+            @using (Html.BeginForm("Index", "Instructors", FormMethod.Get))
+            {
+
+                <select name="PageSize" id="PageSize" class="form-control">
+                    <option @if ((int)ViewBag.PageSize == 5) { @Html.Raw("selected") }>3</option>
+                    <option @if ((int)ViewBag.PageSize == 10) { @Html.Raw("selected") }>5</option>
+                    <option @if ((int)ViewBag.PageSize == 15) { @Html.Raw("selected") }>10</option>
+                </select>
+
+                <input type="submit" value="Go" class="btn btn-outline-secondary" />
+
+            }
+        </span>
+    </div>
+</div>
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0: Model.PageNumber) of @Model.PageCount
 <br />

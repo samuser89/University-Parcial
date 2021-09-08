@@ -2,32 +2,16 @@
 @model PagedList.IPagedList<University.BL.DTOs.DepartmentDTO>
 @{ ViewBag.Title = "Index"; }
 
-<h2>Welcome To Index Deparments</h2>
+<h2>Deparments</h2>
 
-<hr />
-@Html.ActionLink("New Department", "Create", "Departments", null, new { @class = "btn btn-sm btn-primary" })
-<hr />
-@using (Html.BeginForm("Index", "Departments", FormMethod.Get))
-{
-<p>
-    <select name="PageSize" id="PageSize" class="form-control">
-        <option @if ((int)ViewBag.PageSize == 5) { @Html.Raw("selected") }>
-            5
-        </option>
-        <option @if ((int)ViewBag.PageSize == 10) { @Html.Raw("selected") }>
-            10
-        </option>
-        <option @if ((int)ViewBag.PageSize == 15) { @Html.Raw("selected") }>
-            15
-        </option>
 
-    </select>
-    <br />
-    <input type="submit" value="Apply" class="btn btn-primary" />
-</p>}
+
+<button class="btn btn-secondary"><span><i class="fas fa-plus-circle"> </i>@Html.ActionLink("Create New Department", "Create", "Departments", null, new { @class = "btn btn-sm btn-secondary" }) </span></button>
+<hr />
+
 
 <table class="table table-bordered">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th>DeparmentID</th>
             <th>Name</th>
@@ -39,21 +23,40 @@
     <tbody>
         @foreach (var item in Model)
         {
-<tr>
-    <td>@item.DepartmentID</td>
-    <td>@item.Name</td>
-    <td>@item.Budget</td>
-    <td>@item.StartDate</td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", "Departments", new { departmentid = item.DepartmentID }, new { @class = "btn btn-sm btn-primary" })
-        @Html.ActionLink("Delete", "Delete", "Departments", new { departmentid = item.DepartmentID }, new { @class = "btn btn-sm btn-danger" })
-    </td>
-</tr>}
+            <tr>
+                <td>@item.DepartmentID</td>
+                <td>@item.Name</td>
+                <td>@item.Budget</td>
+                <td>@item.StartDate</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Departments", new { departmentid = item.DepartmentID }, new { @class = "badge btn btn-sm btn-outline-warning" })
+                    @Html.ActionLink("Delete", "Delete", "Departments", new { departmentid = item.DepartmentID }, new { @class = "badge btn btn-sm btn-outline-danger" })
+                </td>
+            </tr>
+}
     </tbody>
 </table>
+<div class="row">
+    <div class="col-12">
+        <span class="float-right">
+            @using (Html.BeginForm("Index", "Departments", FormMethod.Get))
+            {
+
+                <select name="PageSize" id="PageSize" class="form-control">
+                    <option @if ((int)ViewBag.PageSize == 5) { @Html.Raw("selected") }>3</option>
+                    <option @if ((int)ViewBag.PageSize == 10) { @Html.Raw("selected") }>5</option>
+                    <option @if ((int)ViewBag.PageSize == 15) { @Html.Raw("selected") }>10</option>
+                </select>
+
+                <input type="submit" value="Go" class="btn btn-outline-secondary" />
+
+            }
+        </span>
+    </div>
+</div>
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0: Model.PageNumber) of @Model.PageCount
 <br />
 Toatal Item Count @Model.TotalItemCount
-@Html.PagedListPager(Model, page => Url.Action("Index", "Instructors", new { page, pageSize = ViewBag.PageSize }))
+@Html.PagedListPager(Model, page => Url.Action("Index", "Departments", new { page, pageSize = ViewBag.PageSize }))
 

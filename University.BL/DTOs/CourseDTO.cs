@@ -5,6 +5,7 @@ namespace University.BL.DTOs
     public class CourseDTO
     {
         #region Course ID
+        
         [Display(Name = "Course ID")]
         [Required(ErrorMessage = "El campo Course ID es requerido.")]
         public int CourseID { get; set; }
