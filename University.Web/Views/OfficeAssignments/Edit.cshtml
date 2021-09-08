@@ -13,16 +13,23 @@
 {
     @Html.AntiForgeryToken()
 
-<form action="/OfficeAssignments/Edit" method="post">
-    @Html.HiddenFor(m => m.InstructorID)
+    <form action="/OfficeAssignments/Edit" method="post">
+        <div class="col-4">
+            @Html.HiddenFor(m => m.InstructorID)
+            @Html.EditorFor(m => m.InstructorID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+        <div class="col-4">
+            @Html.DisplayNameFor(m => m.Location)
+            @Html.EditorFor(m => m.Location, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div class="col-4">
+            <button class="btn btn-warning"><span><i class="fas fa-user-edit"> </i> <input type="submit" value="Edit" class="btn btn-warning" /></span></button>
 
-    @Html.DisplayNameFor(m => m.Location)
-    @Html.EditorFor(m => m.Location, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
-    <hr />
-    <input type="submit" value="Edit" class="btn btn-primary" />
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-sm btn-primary" })
-</form>
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "link" })
+        </div>
+    </form>
 }
 
 

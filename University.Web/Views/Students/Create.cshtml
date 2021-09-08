@@ -10,28 +10,31 @@
 
 <form action="/Students/Create" method="post">
 
+    <div>
 
+        <div class="col-4">
+            @Html.DisplayNameFor(m => m.LastName)
+            @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-4">
 
-    @Html.DisplayNameFor(m => m.ID)
-    @Html.EditorFor(m => m.ID, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.ID, "", new { @class = "text-danger" })
+            @Html.DisplayNameFor(m => m.FirstMidName)
+            @Html.EditorFor(m => m.FirstMidName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.FirstMidName, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-4">
 
+            @Html.DisplayNameFor(m => m.EnrollmentDate)
+            <input type="date" id="EnrollmentDate" name="EnrollmentDate" class="form-control">
+            @Html.ValidationMessageFor(m => m.EnrollmentDate, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <div class="col-4">
+            <button class="btn btn-success"><span><i class="fas fa-plus-circle"> </i> <input type="submit" value="Create" class="btn btn-success" /></span></button>
 
-    @Html.DisplayNameFor(m => m.LastName)
-    @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "link" })
+        </div>
 
-
-
-    @Html.DisplayNameFor(m => m.FirstMidName)
-    @Html.EditorFor(m => m.FirstMidName, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.FirstMidName, "", new { @class = "text-danger" })
-
-
-    @Html.DisplayNameFor(m => m.EnrollmentDate)
-    @Html.EditorFor(m => m.EnrollmentDate, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(m => m.EnrollmentDate, "", new { @class = "text-danger" })
-
-    <input type="submit" value="Create" class="btn btn-primary" />
-
+    </div>
 </form>

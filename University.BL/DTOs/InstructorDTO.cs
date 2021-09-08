@@ -44,7 +44,13 @@ namespace University.BL.DTOs
             }
         }
         #endregion
-
+        public string HireDateSTR
+        {
+            get
+            {
+                return HireDate.ToString("yyyy-MM-dd");
+            }
+        }
         //Complete
     }
 }

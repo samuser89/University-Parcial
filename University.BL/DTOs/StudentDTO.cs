@@ -45,7 +45,14 @@ namespace University.BL.DTOs
             }
         }
         #endregion
-
+        public string EnrollmentDateSTR
+        {
+            get
+            {
+                return EnrollmentDate.ToString("yyyy-MM-dd");
+            }
+        }
         //complete
     }
+
 }

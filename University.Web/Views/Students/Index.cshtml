@@ -28,7 +28,7 @@
                 <td>@item.ID</td>
                 <td>@item.LastName</td>
                 <td>@item.FirstMidName</td>
-                <td>@item.EnrollmentDate</td>
+                <td>@item.EnrollmentDate.ToString("yyyy-MM-dd")</td>
                 <td>
                     @Html.ActionLink("Courses", "Index", "Students", new { studentId = item.ID }, new { @class = "badge btn btn-sm btn-outline-info" })
                     @Html.ActionLink("Edit", "Edit", "Students", new { id = item.ID }, new { @class = "badge btn btn-sm btn-outline-warning" })

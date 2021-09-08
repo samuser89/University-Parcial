@@ -26,7 +26,7 @@
                 <td>@item.ID</td>
                 <td>@item.LastName</td>
                 <td>@item.FirstMidName</td>
-                <td>@item.HireDate</td>
+                <td>@item.HireDate.ToString("yyyy-MM-dd")</td>
                 <td>
                     @Html.ActionLink("Departments", "Index", "Instructors", new { instructorID = item.ID }, new { @class = "badge btn btn-sm btn-outline-info" })
                     @Html.ActionLink("Edit", "Edit", "Instructors", new { id = item.ID }, new { @class = "badge btn btn-sm btn-outline-warning" })

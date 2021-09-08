@@ -91,6 +91,8 @@ namespace University.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int departmentid)
         {
+            LoadData();
+
             var deparment = context.Departments.Where(x => x.DepartmentID == departmentid)
                                                 .Select(x => new DepartmentDTO
                                                 {
@@ -107,6 +109,7 @@ namespace University.Web.Controllers
         [HttpPost]
         public ActionResult Edit(DepartmentDTO department)
         {
+            LoadData();
 
             try
             {

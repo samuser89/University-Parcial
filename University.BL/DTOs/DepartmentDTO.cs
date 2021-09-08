@@ -46,5 +46,19 @@ namespace University.BL.DTOs
         #endregion
 
         // complete
+        public string StartDateSTR
+        {
+            get
+            {
+                return StartDate.ToString("yyyy-MM-dd");
+            }
+        }
+        public string BudgetSTR
+        {
+            get
+            {
+                return Budget.ToString("");
+            }
+        }
     }
 }

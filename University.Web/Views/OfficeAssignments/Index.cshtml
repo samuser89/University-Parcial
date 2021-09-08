@@ -18,7 +18,7 @@
     <thead class="thead-dark">
         <tr>
             <th>FullName</th>
-            <th>Localitation</th>
+            <th>Location</th>
             <th> Options</th>
         </tr>
 
@@ -28,8 +28,8 @@
                 <td> @item.Instructor.FullName</td>
                 <td> @item.Location</td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "OfficeAssignments", new { instructorid = item.InstructorID }, new { @class = "btn btn-sm btn-primary" })
-                    @Html.ActionLink("Delete", "Delete", "OfficeAssignments", new { instructorid = item.InstructorID }, new { @class = "btn btn-sm btn-primary" })
+                    @Html.ActionLink("Edit", "Edit", "OfficeAssignments", new { instructorid = item.InstructorID }, new { @class = "badge btn btn-sm btn-outline-warning" })
+                    @Html.ActionLink("Delete", "Delete", "OfficeAssignments", new { instructorid = item.InstructorID }, new { @class = "badge btn btn-sm btn-outline-danger" })
                 </td>
             </tr>
         }
