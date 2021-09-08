@@ -15,7 +15,7 @@
 
 <form action="/Instructors/Create" method="post">
 
-    <h4>InstructorDTO</h4>
+    <h4>Instructor</h4>
     <hr />
 
 
@@ -34,7 +34,7 @@
         </div>
 
         <div class="col-4">
-            @Html.DisplayNameFor(m => m.HireDate)
+            @Html.DisplayNameFor(m => m.HireDate )
             <input type="date" id="HireDate" name="HireDate" class="form-control">
             @Html.ValidationMessageFor(model => model.HireDate, "", new { @class = "text-danger" })
         </div>
@@ -43,10 +43,10 @@
 
 
         <br />
-        <div class="container-fluid">
-            <input type="submit" value="Create" class="btn btn-primary" />
+        <div class="col-4">
+            <button class="btn btn-success"><span><i class="fas fa-plus-circle"> </i> <input type="submit" value="Create" class="btn btn-success" /></span></button>
 
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "link" })
         </div>
 
         @section Scripts {

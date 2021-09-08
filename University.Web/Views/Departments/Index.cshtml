@@ -43,9 +43,9 @@
             {
 
                 <select name="PageSize" id="PageSize" class="form-control">
-                    <option @if ((int)ViewBag.PageSize == 5) { @Html.Raw("selected") }>3</option>
-                    <option @if ((int)ViewBag.PageSize == 10) { @Html.Raw("selected") }>5</option>
-                    <option @if ((int)ViewBag.PageSize == 15) { @Html.Raw("selected") }>10</option>
+                    <option @if ((int)ViewBag.PageSize == 3) { @Html.Raw("selected") }>3</option>
+                    <option @if ((int)ViewBag.PageSize == 5) { @Html.Raw("selected") }>5</option>
+                    <option @if ((int)ViewBag.PageSize == 10) { @Html.Raw("selected") }>10</option>
                 </select>
 
                 <input type="submit" value="Go" class="btn btn-outline-secondary" />

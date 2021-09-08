@@ -11,7 +11,7 @@
 
 <form action="/Departments/Create" method="post">
 
-    <h4>DepartmentDTO</h4>
+    <h4>Department</h4>
     <hr />
     <div>
 
@@ -28,15 +28,11 @@
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
 
-        <div class="col-4">
-            @Html.LabelFor(model => model.Budget, htmlAttributes: new { @class = "control-label col-md-4" })
-            @Html.EditorFor(model => model.Budget, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Budget, "", new { @class = "text-danger" })
-        </div>
+
 
         <div class="col-4">
-            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-4" })
-            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.LabelFor(model => model.Budget, htmlAttributes: new { @class = "control-label col-md-4" })
+            <input type="date" id="Budget" name="Budget" class="form-control">
             @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
         </div>
 
@@ -47,14 +43,14 @@
         </div>
 
         <br />
-        <div class="container-fluid">
-            <input type="submit" value="Create" class="btn btn-primary" />
+        <div class="col-4">
+            <button class="btn btn-success"><span><i class="fas fa-plus-circle"> </i> <input type="submit" value="Create" class="btn btn-success" /></span></button>
 
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-
-            @section Scripts {
-                @Scripts.Render("~/bundles/jqueryval")
-            }
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "link" })
         </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+    </div>
 </form>
