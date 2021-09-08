@@ -1,8 +1,11 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Web.Mvc;
-using University.BL.Data;
+using University.BL.Models;
 using University.BL.DTOs;
+using University.BL.Data;
+using System.Linq;
+using PagedList;
 
 namespace University.Web.Controllers
 {
@@ -27,12 +30,13 @@ namespace University.Web.Controllers
             });
             #region Paginacion
             //Si viene nulo dele 10 por defecto
-            pageSize = (pageSize ?? 5);
+            pageSize = (pageSize ?? 3);
             //si viene igual por defecto llevelo a la 1 
             page = (page ?? 1);
             ViewBag.pageSize = pageSize;
             #endregion 
-            return View(offices);
+            
+            return View(offices.ToPagedList(page.Value, pageSize.Value));
         }
 
         [HttpGet]

@@ -1,5 +1,6 @@
 ﻿@using PagedList.Mvc;
-@model IEnumerable<University.BL.DTOs.OfficeAssignmentDTO>
+@model PagedList.IPagedList<University.BL.DTOs.OfficeAssignmentDTO>
+
 
 
 @{
@@ -11,29 +12,21 @@
 <button class="btn btn-secondary"><span><i class="fas fa-plus-circle"> </i>@Html.ActionLink("Create New Office", "Create", "OfficeAssignments", null, new { @class = "btn btn-sm btn-secondary" }) </span></button>
 <hr />
 
+
+
 <table class="table table-bordered">
     <thead class="thead-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Instructor.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th>
-                Options
-            </th>
+            <th>FullName</th>
+            <th>Localitation</th>
+            <th> Options</th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Instructor.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location)
-                </td>
+                <td> @item.Instructor.FullName</td>
+                <td> @item.Location</td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", "OfficeAssignments", new { instructorid = item.InstructorID }, new { @class = "btn btn-sm btn-primary" })
                     @Html.ActionLink("Delete", "Delete", "OfficeAssignments", new { instructorid = item.InstructorID }, new { @class = "btn btn-sm btn-primary" })
@@ -60,3 +53,9 @@
         </span>
     </div>
 </div>
+<br />
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0: Model.PageNumber) of @Model.PageCount
+<br />
+Toatal Item Count @Model.TotalItemCount
+@Html.PagedListPager(Model, page => Url.Action("Index", "OfficeAssignments", new { page, pageSize = ViewBag.PageSize }))
